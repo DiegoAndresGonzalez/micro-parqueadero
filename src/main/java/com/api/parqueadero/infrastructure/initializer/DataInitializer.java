@@ -21,7 +21,7 @@ public class DataInitializer implements CommandLineRunner {
             UserEntity admin = new UserEntity();
             admin.setName("admin");
             admin.setPassword(passwordEncoder.encode("admin"));
-            admin.setEmail("admin@admin.com");
+            admin.setEmail("admin@mail.com");
             admin.setRole("ADMIN");
             userEntityRepository.save(admin);
         }

@@ -40,36 +40,6 @@
 					"response": []
 				},
 				{
-					"name": "Socio - Listado vehiculos",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWVnbzNAbWFpbC5jb20iLCJyb2xlIjoiW1JPTEVfU09DSU9dIiwiaWF0IjoxNzM3NzA4NzQxLCJleHAiOjE3Mzc3NDQ3NDF9.7X6u9Qpv7IuG6ihWzjUuDMG3OyK0a1J7sKSorOj-3S0",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/socio/vehiculo",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"socio",
-								"vehiculo"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Socio - Registrar entrada",
 					"request": {
 						"auth": {
@@ -142,6 +112,36 @@
 							"path": [
 								"socio",
 								"salida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Socio - Listado vehiculos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWVnbzNAbWFpbC5jb20iLCJyb2xlIjoiW1JPTEVfU09DSU9dIiwiaWF0IjoxNzM3NzA4NzQxLCJleHAiOjE3Mzc3NDQ3NDF9.7X6u9Qpv7IuG6ihWzjUuDMG3OyK0a1J7sKSorOj-3S0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/socio/vehiculo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socio",
+								"vehiculo"
 							]
 						}
 					},
@@ -657,7 +657,7 @@
 					"response": []
 				},
 				{
-					"name": "Indicador - Ganancias",
+					"name": "(Socio) Indicador - Ganancias",
 					"request": {
 						"auth": {
 							"type": "bearer",

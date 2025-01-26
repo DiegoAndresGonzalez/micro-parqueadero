@@ -1,6 +1,7 @@
 package com.api.parqueadero.infrastructure.adapters.persistence;
 
 import com.api.parqueadero.application.mapper.EmailDtoMapper;
+import com.api.parqueadero.domain.exceptions.BadUserRequestException;
 import com.api.parqueadero.domain.model.EmailModel;
 import com.api.parqueadero.domain.model.ParkingModel;
 import com.api.parqueadero.domain.model.RegistryModel;
@@ -20,8 +21,6 @@ import com.api.parqueadero.infrastructure.repository.ParkingEntityRepository;
 import com.api.parqueadero.infrastructure.repository.RegistryEntityRepository;
 import com.api.parqueadero.infrastructure.repository.UserEntityRepository;
 import com.api.parqueadero.infrastructure.repository.UserParkingEntityRepository;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -52,8 +51,7 @@ public class AdminPersistenceAdapter implements AdminPersistencePort {
     @Override
     public UserModel getUserByEmail(String email) {
         return userEntityMapper.toUserModel(
-                userEntityRepository.findByEmail(email)
-                        .orElseThrow(() -> new NotFoundException(Constants.USER_NOT_FOUND)));
+                userEntityRepository.findByEmail(email).orElse(null));
     }
 
     @Override
@@ -68,12 +66,14 @@ public class AdminPersistenceAdapter implements AdminPersistencePort {
     }
 
     @Override
-    @Transactional
     public void associateParking(Long parkingId, Long userId) {
         ParkingEntity parkingEntity = parkingEntityRepository.findById(parkingId)
-                .orElseThrow(() -> new EntityNotFoundException(Constants.PARKING_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(Constants.PARKING_NOT_FOUND));
         UserEntity userEntity = userEntityRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException(Constants.USER_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(Constants.USER_NOT_FOUND));
+        if (userEntity.getRole().equals(Constants.ADMIN_ROLE)){
+            throw new BadUserRequestException(Constants.CANT_ASSOCIATE_ADMIN);
+        }
         if (Boolean.FALSE.equals(userParkingEntityRepository
                 .existsByUserEntityAndParkingEntity(userEntity, parkingEntity))) {
             UserParkingEntity userParkingEntity = new UserParkingEntity();

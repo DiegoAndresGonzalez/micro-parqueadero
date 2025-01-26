@@ -27,10 +27,10 @@ public class UserEntity implements UserDetails {
     private String role;
 
 
-    @OneToMany(mappedBy = "userEntity")
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistryEntity> registryEntities;
 
-    @OneToMany(mappedBy = "userEntity")
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserParkingEntity> userParking;
 
     @Override

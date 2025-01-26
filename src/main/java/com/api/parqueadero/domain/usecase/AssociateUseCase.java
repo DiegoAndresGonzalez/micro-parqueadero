@@ -63,22 +63,29 @@ public class AssociateUseCase implements AssociateServicePort {
 
     @Override
     public List<ParkingModel> getAssociatedParking() {
-        return associatePersistencePort.getAssociatedParking(
-                associatePersistencePort.getLoggedAssociateId());
+        return validateHasAnyParking();
     }
 
     @Override
     public List<RegistryModel> getAssociatedVehicle() {
-        List<ParkingModel> associatedParking = associatePersistencePort
-                .getAssociatedParking(associatePersistencePort.getLoggedAssociateId());
-        if (associatedParking == null) {
-            throw new BadUserRequestException(Constants.NONE_ASSIGNED);
-        }
+        List<ParkingModel> associatedParking = validateHasAnyParking();
         List<Long> parkingIds = associatedParking.stream()
                 .map(ParkingModel::getId)
                 .toList();
+        List<RegistryModel> parkedVehicles = associatePersistencePort.getAssociatedVehicles(parkingIds);
+        if (parkedVehicles.isEmpty()) {
+            throw new BadUserRequestException(Constants.NONE_VEHICLE_REGISTERED);
+        }
+        return parkedVehicles;
+    }
 
-        return associatePersistencePort.getAssociatedVehicles(parkingIds);
+    private List<ParkingModel> validateHasAnyParking() {
+        List<ParkingModel> associatedParking = associatePersistencePort
+                .getAssociatedParking(associatePersistencePort.getLoggedAssociateId());
+        if (associatedParking == null || associatedParking.isEmpty()) {
+            throw new BadUserRequestException(Constants.NONE_ASSIGNED);
+        }
+        return associatedParking;
     }
 
     private void validateUserHasAssociatedParking(List<ParkingModel> associatedParking) {

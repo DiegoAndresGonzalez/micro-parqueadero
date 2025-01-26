@@ -38,12 +38,20 @@ public class AdminUseCase implements AdminServicePort {
 
     @Override
     public List<RegistryModel> findVehicleByParkingId(Long parkingId) {
+        checkParkingExistence(parkingId);
         return adminPersistencePort.findVehicleByParkingId(parkingId);
     }
 
     @Override
     public void associateUserToParking(Long parkingId, Long userId) {
         adminPersistencePort.associateParking(parkingId,userId);
+    }
+
+    private void checkParkingExistence (Long parkingId) {
+        ParkingModel actualParking = adminPersistencePort.findParkingById(parkingId);
+        if (actualParking == null) {
+            throw new BadUserRequestException(Constants.PARKING_NOT_FOUND);
+        }
     }
 
     @Override
@@ -56,7 +64,6 @@ public class AdminUseCase implements AdminServicePort {
             }
             emailModel.setParkingName(parkingModel.getName());
             adminPersistencePort.sendEmail(emailModel);
-
         }
         else if (parkingModel == null){
             throw new BadUserRequestException(Constants.PARKING_NOT_FOUND);
@@ -87,11 +94,14 @@ public class AdminUseCase implements AdminServicePort {
     public void deleteUser(Long userId) {
         UserModel actualUser = adminPersistencePort.findUserById(userId);
         if (actualUser != null) {
-            adminPersistencePort.deleteUser(userId);
+            if (actualUser.getRole().equals(Constants.ADMIN_ROLE)) {
+                throw new BadUserRequestException(Constants.CANT_DELETE_ADMIN);
+            }
         }
         else {
             throw new BadUserRequestException(Constants.USER_NOT_FOUND);
         }
+        adminPersistencePort.deleteUser(userId);
     }
 
     @Override
@@ -105,7 +115,6 @@ public class AdminUseCase implements AdminServicePort {
         if (actualUser.getName() == null && actualUser.getEmail() == null && actualUser.getPassword() == null) {
             throw new BadUserRequestException(Constants.EMPTY_USER_UPDATE);
         }
-
         if (user.getName() != null) {
             actualUser.setName(user.getName());
         }

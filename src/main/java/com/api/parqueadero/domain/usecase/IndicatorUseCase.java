@@ -25,11 +25,13 @@ public class IndicatorUseCase implements IndicatorServicePort {
 
     @Override
     public List<RegistryModel> getTop10Vehicles(Long parkingId) {
+        checkParkingExistence(parkingId);
         return persistencePort.getTop10Vehicles(parkingId);
     }
 
     @Override
     public List<RegistryModel> getFirstTimeVehicle(Long parkingId) {
+        checkParkingExistence(parkingId);
         return persistencePort.getFirstTimeVehicles(parkingId);
     }
 
@@ -202,5 +204,11 @@ public class IndicatorUseCase implements IndicatorServicePort {
         return totalEarnings;
     }
 
+    private void checkParkingExistence (Long parkingId) {
+        ParkingModel actualParking = adminPersistencePort.findParkingById(parkingId);
+        if (actualParking == null) {
+            throw new BadUserRequestException(Constants.PARKING_NOT_FOUND);
+        }
+    }
 
 }

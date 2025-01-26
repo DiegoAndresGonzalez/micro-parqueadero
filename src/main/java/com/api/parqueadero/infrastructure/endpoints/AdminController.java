@@ -21,28 +21,37 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/registro")
-    public void registerAssociate(@RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<GenericResponseDto> registerAssociate(@RequestBody UserRequestDto userRequestDto) {
         adminService.createAssociate(userRequestDto);
+        GenericResponseDto responseDto = new GenericResponseDto();
+        responseDto.setMessage("Se ha registrado con exito el asociado");
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/parqueadero")
-    public void createParking(@RequestBody CreateParkingRequestDto createParkingRequestDto) {
+    public ResponseEntity<GenericResponseDto> createParking(@RequestBody CreateParkingRequestDto createParkingRequestDto) {
         adminService.createParking(createParkingRequestDto);
+        GenericResponseDto responseDto = new GenericResponseDto();
+        responseDto.setMessage("Se ha creado con exito el parqueadero");
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/vehiculo/{parkingId}")
-    public ResponseEntity<ParkingVehicleResponseDto> getVehicleList(@PathVariable Long parkingId) {
+    @GetMapping("/vehiculo")
+    public ResponseEntity<ParkingVehicleResponseDto> getVehicleList(@RequestParam Long parkingId) {
         return ResponseEntity.ok().body(adminService.findVehicleByParkingId(parkingId));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/parqueadero/socio")
-    public void associateUserToParking
+    public ResponseEntity<GenericResponseDto> associateUserToParking
             (@RequestParam Long parkingId, @RequestParam Long userId) {
         adminService.associateUserToParking(parkingId, userId);
+        GenericResponseDto genericResponseDto = new GenericResponseDto();
+        genericResponseDto.setMessage("Se ha associado con exito el asociado al parqueadero");
+        return new ResponseEntity<>(genericResponseDto, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -53,8 +62,8 @@ public class AdminController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/parqueadero/{parkingId}")
-    public ResponseEntity<GenericResponseDto> deleteParking(@PathVariable Long parkingId) {
+    @DeleteMapping("/parqueadero")
+    public ResponseEntity<GenericResponseDto> deleteParking(@RequestParam Long parkingId) {
         adminService.deleteParking(parkingId);
         GenericResponseDto genericResponseDto = new GenericResponseDto();
         genericResponseDto.setMessage("Se ha eliminado el parqueadero");
@@ -62,8 +71,8 @@ public class AdminController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/socio/{userId}")
-    public ResponseEntity<GenericResponseDto> deleteUser(@PathVariable Long userId) {
+    @DeleteMapping("/socio")
+    public ResponseEntity<GenericResponseDto> deleteUser(@RequestParam Long userId) {
         adminService.deleteUser(userId);
         GenericResponseDto genericResponseDto = new GenericResponseDto();
         genericResponseDto.setMessage("Se ha eliminado el usuario");

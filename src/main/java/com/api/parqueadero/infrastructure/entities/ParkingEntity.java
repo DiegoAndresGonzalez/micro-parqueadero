@@ -23,10 +23,10 @@ public class ParkingEntity {
     private Integer maxAmount;
     private Integer costPerHour;
 
-    @OneToMany(mappedBy = "parkingEntity")
+    @OneToMany(mappedBy = "parkingEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistryEntity> registryEntities;
 
-    @OneToMany(mappedBy = "parkingEntity")
+    @OneToMany(mappedBy = "parkingEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserParkingEntity> userParking;
 
 }

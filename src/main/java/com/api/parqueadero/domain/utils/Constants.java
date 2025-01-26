@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 public class Constants {
 
     public static final String ASSOCIATE_ROLE = "SOCIO";
+    public static final String ADMIN_ROLE = "ADMIN";
     public static final String USER_ALREADY_EXISTS = "Ya existe un usuario creado con este correo";
     public static final String EMPTY_PASSWORD = "La contraseña no puede estar vacia";
     public static final String EMPTY_EMAIL = "El correo no puede estar vacio";
@@ -33,7 +34,8 @@ public class Constants {
     public static final String EMPTY_USER_UPDATE = "Debe proporcionar al menos un dato para actualizar (nombre, correo o contraseña)";
     public static final String WRONG_EMAIL = "El correo electrónico proporcionado no tiene un formato válido";
     public static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-    public static final String INVALID_TOKEN = "La sesión ha expirado, debes logearte denuevo";
-    public static final String NOT_PERMITTED = "No tienes los permisos adecuados para realizar esta acción";
+    public static final String NONE_VEHICLE_REGISTERED = "El usuario no ha registrado ningún vehiculo";
+    public static final String CANT_ASSOCIATE_ADMIN = "No puedes asignar un usuario administrador a un parqueadero";
+    public static final String CANT_DELETE_ADMIN = "No puedes borrar el usuario administrador";
 }
 
