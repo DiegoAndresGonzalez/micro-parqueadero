@@ -1,6 +1,8 @@
 Puerto Micro Parqueadero = 8080
 Puerto Micro Correos = 8081
 
+Recomiendo utilizar el paquete de postman del repositorio puesto que es el más actualizado
+
 Swagger = http://localhost:8080/swagger-ui/index.html#/
 
 Configuracion postgresql (se puede cambiar en application.properties si hace falta):
