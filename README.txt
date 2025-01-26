@@ -1,6 +1,8 @@
 Puerto Micro Parqueadero = 8080
 Puerto Micro Correos = 8081
 
+Swagger = http://localhost:8080/swagger-ui/index.html#/
+
 Configuracion postgresql (se puede cambiar en application.properties si hace falta):
 localhost:5433/parqueadero (Es necesario crear una base de datos llamada parqueadero primero)
 username=postgres
