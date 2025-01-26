@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "36911d82-f562-42da-9142-f0cd1bcecc7b",
+		"name": "Parqueadero",
+		"description": "API que maneja los servicios de un parqueadero.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29096879"
+	},
+	"item": [
+		{
+			"name": "Socio - Request",
+			"item": [
+				{
+					"name": "Auth - Login Socio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Socio - Listado vehiculos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWVnbzNAbWFpbC5jb20iLCJyb2xlIjoiW1JPTEVfU09DSU9dIiwiaWF0IjoxNzM3NzA4NzQxLCJleHAiOjE3Mzc3NDQ3NDF9.7X6u9Qpv7IuG6ihWzjUuDMG3OyK0a1J7sKSorOj-3S0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/socio/vehiculo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socio",
+								"vehiculo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Socio - Registrar entrada",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWVnbzNAbWFpbC5jb20iLCJyb2xlIjoiW1JPTEVfU09DSU9dIiwiaWF0IjoxNzM3Nzg2NjkyLCJleHAiOjE3Mzc4MjI2OTJ9.C37D20xJR4m0JwOJNdOwRszcKFUXJAYXegVyTMar0CE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plate\": \"\",\r\n    \"parkingId\": \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/socio/registro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socio",
+								"registro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Socio - Registrar salida",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plate\": \"\",\r\n    \"parkingId\": \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/socio/salida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socio",
+								"salida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Socio - Parqueadero asociado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/socio/parqueadero",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socio",
+								"parqueadero"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Acciones de SOCIO (en el orden que se encuentran):\n\n- Iniciar sesión\n    \n- Listar vehiculos registrados en su cuenta\n    \n- Registrar entrada de vehiculo\n    \n- Registrar salida de vehiculo\n    \n- Listar parqueaderos asociados"
+		},
+		{
+			"name": "Admin - Request",
+			"item": [
+				{
+					"name": "Auth - Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Registrar socio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/registro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"registro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Actualizar socio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/socio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"socio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Eliminar socio",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/socio?userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"socio"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Listado Vehiculos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/vehiculo/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"vehiculo",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Crear parqueadero",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"location\": \"\",\r\n    \"maxAmount\": ,\r\n    \"costPerHour\" : \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/parqueadero",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"parqueadero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Actualizar parqueadero",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": ,\r\n    \"name\": \"\",\r\n    \"location\": \"\",\r\n    \"maxAmount\": \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/parqueadero",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"parqueadero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Asociar parqueadero",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "parkingId",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/admin/parqueadero/socio?parkingId=&userId=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"parqueadero",
+								"socio"
+							],
+							"query": [
+								{
+									"key": "parkingId",
+									"value": ""
+								},
+								{
+									"key": "userId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Eliminar parqueadero",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/parqueadero?parkingId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"parqueadero"
+							],
+							"query": [
+								{
+									"key": "parkingId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Enviar correo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"plate\": \"\",\r\n  \"message\": \"\",\r\n  \"parkingId\": \"\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/enviar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"enviar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Top socios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/indicador/top-socio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"indicador",
+								"top-socio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Top parqueadero",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/indicador/top-park",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"indicador",
+								"top-park"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Acciones de ADMIN (en el orden que se encuentran) :\n\n- Iniciar sesion\n    \n- Registrar socio\n    \n- Eliminar socio\n    \n- Listar vehiculos parqueados\n    \n- Crear parqueadero\n    \n- Actualizar parqueadero\n    \n- Eliminar parqueadero\n    \n- Asociar socio a un parqueadero\n    \n- Enviar correos (debe tener la micro de correos prendida)\n    \n- Obtener el top 3 socios que más ha ingresado vehiculos\n    \n- Obtener el top 3 parqueaderos con más ingresos"
+		},
+		{
+			"name": "Indicador - Request",
+			"item": [
+				{
+					"name": "Indicador - Top 10 vehiculos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/indicador/top?parkingId=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"indicador",
+								"top"
+							],
+							"query": [
+								{
+									"key": "parkingId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Indicador - Primera vez",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/indicador/first?parkingId=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"indicador",
+								"first"
+							],
+							"query": [
+								{
+									"key": "parkingId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Indicador - Ganancias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/indicador/ganancia?parkingId=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"indicador",
+								"ganancia"
+							],
+							"query": [
+								{
+									"key": "parkingId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Peticiones en las que se muestran indicadores que exponen el rendimiento de los usuarios del API (ADMIN Y SOCIO):\n\n- Indica los top 10 vehiculos que mas han sido ingresados\n    \n- Lista de los vehiculos que se encuentran en el parqueadero por primera vez\n    \n- Lista de las ganancias que ha conseguido un parqueadero especifico"
+		}
+	]
+}
